@@ -1,7 +1,7 @@
 import {  Fragment, useEffect, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
-export default function Model({isOpen,onClose,title,children,closeModal}) {
+export default function Model({isOpen,onClose,title,children,closeModal,position}) {
   
 
 let panelref=useRef(null);
@@ -41,7 +41,7 @@ let panelref=useRef(null);
                 afterEnter={()=>panelref.current.addEventListener("mouseleave",onMouseLeave)}
                 afterLeave={()=>panelref.current.removeEventListener("mouseleave",onMouseLeave)}
               >
-                <Dialog.Panel className=" transform  overflow-hidden w-full max-w-md rounded-2xl bg-dark text-left align-middle shadow-xl transition-all text-white">
+                <Dialog.Panel style={position?{position:"fixed",...position}:null} className=" transform  overflow-hidden  rounded-2xl bg-dark text-left align-middle shadow-xl transition-all text-white">
                   <div ref={panelref}>
                   <Dialog.Title
                     as="h3"
