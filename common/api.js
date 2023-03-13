@@ -1,3 +1,4 @@
+import { ENDPOINT } from "./endpoints";
 
 
 export async function fetchRequest(endpoint){
@@ -16,3 +17,19 @@ export async function fetchRequest(endpoint){
   
 
 }
+
+export async function fetchVideoInfo(id) {
+    
+      const response = await fetchRequest(
+        ENDPOINT.MOVIES_VIDEO.replace("{movie_id}", id)
+      );
+    
+      return response.results.find(
+        (result) => result.site.toLowerCase() === "youtube"
+      );
+    
+    // catch(error){
+    //   console.log(error)
+    // }
+    
+  }
