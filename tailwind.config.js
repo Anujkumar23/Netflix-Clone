@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        dark: "hsl(0deg 0% 8%)"
+        dark: "hsl(0deg 0% 8%)",
+        NetflixRed:"#d40812"
 
       },
       animation:{
