@@ -22,15 +22,15 @@ function onMenuLeave(){
         setShowMenu(false)
     },300)
 }
-useEffect(() => {
-  menuRef.current.addEventListener("mouseenter" ,onMenuEnter)
-  menuRef.current.addEventListener("mouseleave" ,onMenuLeave)
+// useEffect(() => {
+//   menuRef.current.addEventListener("mouseenter" ,onMenuEnter)
+//   menuRef.current.addEventListener("mouseleave" ,onMenuLeave)
 
-  return () => {
-    menuRef.current.removeEventListener("mouseenter" ,onMenuEnter)
-    menuRef.current.removeEventListener("mouseleave" ,onMenuLeave)
-  }
-}, [])
+//   return () => {
+//     menuRef.current.removeEventListener("mouseenter" ,onMenuEnter)
+//     menuRef.current.removeEventListener("mouseleave" ,onMenuLeave)
+//   }
+// }, [])
 
   return (
 <section ref={menuRef} className='relative overflow-hidden '>
