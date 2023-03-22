@@ -10,7 +10,7 @@ import MovieCard from './MovieCard';
      async function fetchRowData(){
         const popularMovies= await fetchRequest(endpoint)
        console.log(popularMovies.results)
-          setRowData(popularMovies.results);
+          setRowData(popularMovies.results.filter(result=>result.poster_path));
 
      }
 
