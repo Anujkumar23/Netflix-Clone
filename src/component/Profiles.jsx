@@ -6,6 +6,7 @@ import PencilIcon from "@heroicons/react/24/solid/PencilIcon"
 import Model from "./Model";
 
 function Profiles({edit}) {
+  const navigate=useNavigate();
      const [isProfileEditorOpen, setisProfileEditorOpen] = useState(false);
      
     const header= edit?"Manage Profiles":"Who's Watching?";
@@ -21,24 +22,9 @@ function Profiles({edit}) {
       setisProfileEditorOpen(false)
     }
 
-
-
-   
-   
-
-    // function handleProfileCardClick(){
-    //   console.log("handle clicked")
-    //     navigate("/browse");
-    // }
-
-    // useEffect(() => {
-      
-    //   profileCardRef.current.addEventListener("click",handleProfileCardClick);
-    //  () =>  profileCardRef.current.removeEventListener("click",handleProfileCardClick)
-      
-    // }, [])
-
-    function openEditor(){
+    function openEditor(event){
+      event.stopPropagation();
+      console.log("open editor clicked")
       setisProfileEditorOpen(true)
     }
 
@@ -49,7 +35,7 @@ function Profiles({edit}) {
         <section className='flex gap-4  '>
         <ProfileCard onEditClick={openEditor}  edit={edit}/>
         <ProfileCard onEditClick={openEditor}  edit={edit}/>
-        <AddProfile/>
+        <AddProfile onEditClick={openEditor} edit={edit}/>
 
         </section> 
         {edit?(<>
@@ -67,26 +53,22 @@ function Profiles({edit}) {
     )
    
   }
-  function ProfileCard({edit,onEditClick }){
+   function ProfileCard({edit,onEditClick }){
 
-    let profileCardRef=useRef(null);
+    // let profileCardRef=useRef(null);
     const navigate=useNavigate();
 
-    function handleProfileCardClick(){
+    function handleProfileCardClick(event){
       console.log("handle clicked")
+     
         navigate("/browse");
     }
 
 
-    useEffect(() => {
-      
-      profileCardRef.current.addEventListener("click",handleProfileCardClick);
-     () =>  profileCardRef.current.removeEventListener("click",handleProfileCardClick)
-      
-    }, [])
+   
     
     return(
-        <section ref={profileCardRef}  className="grid grid-col place-content-center place-items-center cursor-pointer text-gray-400 hover:text-white overflow-hidden">
+        <section onClick={!edit&&handleProfileCardClick}className="grid grid-col place-content-center place-items-center cursor-pointer text-gray-400 hover:text-white overflow-hidden">
             <section  className='relative h-[10vw] w-[10vw] rounded-sm min-h-[84px] min-w-[84px] max-h-[200px] max-w-[200px] hover:border-2 border-white '>
                 <img src={NetflixProfile} alt="profile img" />
                 {edit?<button onClick={onEditClick} className='absolute inset-0  grid     place-items-center bg-black/50' >
@@ -99,13 +81,13 @@ function Profiles({edit}) {
     )
 
   }
-  function AddProfile(){
+  function AddProfile({onEditClick,}){
     return(
         <>
         <section className="flex flex-col place-content-center text-gray-400 hover:text-white place-items-center overflow-hidden">
-         <button className='overflow-hidden h-[10vw] w-[10vw] rounded-md min-h-[84px] min-w-[84px] max-h-[200px] max-w-[200px] hover:border-2 border-white grid  place-items-center  place-content-center hover:bg-gray-400 hover:text-white
+         <button  onClick={onEditClick} className='overflow-hidden h-[10vw] w-[10vw] rounded-md min-h-[84px] min-w-[84px] max-h-[200px] max-w-[200px] hover:border-2 border-white grid  place-items-center  place-content-center hover:bg-gray-400 hover:text-white
          '>
-            <PlusIcon className='w-[75%]'/>
+            <PlusIcon className='w-[85%]'/>
          </button>
          <h1 className='text-xl'>Add Profile</h1>
         </section >
